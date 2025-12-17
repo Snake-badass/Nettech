@@ -12,3 +12,4 @@ DOMAIN-SUFFIX,qiezi.gno.limo
 DOMAIN,mlk-bk.cdn.gigachad-cdn.ru
 DOMAIN-SUFFIX,medscape.com
 DOMAIN-KEYWORD,ilovepdf
+IP-CIDR,1.1.1.1/32,no-resolve
