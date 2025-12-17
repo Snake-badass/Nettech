@@ -1,8 +1,8 @@
 DOMAIN-SUFFIX,dns.alidns.com
 DOMAIN-SUFFIX,doh.pub
 IP-CIDR,202.103.24.68/32,no-resolve
-IP-CIDR,119.29.29.29,no-resolve
-IP-CIDR,101.226.4.6,no-resolve
+IP-CIDR,119.29.29.29/32,no-resolve
+IP-CIDR,101.226.4.6/32,no-resolve
 DOMAIN-SUFFIX,heytapmobile.com
 DOMAIN-SUFFIX,realme.net
 DOMAIN-SUFFIX,admobile.top
@@ -19,6 +19,3 @@ DOMAIN-SUFFIX,gudong.fun
 DOMAIN-SUFFIX,qc.qaz.ink
 DOMAIN-SUFFIX,wucai.site
 DOMAIN,wma10226.v.113001.xyz
-DOMAIN-KEYWORD,bilibili
-DOMAIN-KEYWORD,bilivideo
-DOMAIN-KEYWORD,douyin
