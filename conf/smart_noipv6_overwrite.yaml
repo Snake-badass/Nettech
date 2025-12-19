@@ -10,7 +10,12 @@ proxy-providers:
     proxy: Mainland
     interval: 1440
     filter: "^((?!(更新|客户端|显示|教程)).)*$"
-
+  WM:
+    url: "url"
+    type: http
+    proxy: Mainland
+    filter: "^((?!(测试|客户端|官网|教程)).)*$"
+    
 # 基本代理
 proxies:
   - { name: Mainland, type: direct, udp: true }
@@ -107,6 +112,7 @@ group1: &group1
     - Mainland
     - NB-manual
     - WD-manual
+    - WM-manual
     - Asia-smart
     - West-smart
     - HK-manual
@@ -150,6 +156,14 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 3600
     filter: "^((?!(Traffic|Expire)).)*$"
+    
+  - name: WM-manual
+    type: select
+    use:
+      - WM
+    url: "https://www.gstatic.com/generate_204"
+    interval: 3600
+    filter: "^((?!(官网|客户端)).)*$"
 
   - name: HK-manual
     type: select
@@ -181,6 +195,7 @@ proxy-groups:
     use:
       - NB
       - WD
+      - WM
     filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期|Traffic|Expire)).)*$"
 
   - name: Asia-smart
