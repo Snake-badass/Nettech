@@ -81,9 +81,12 @@ dns:
   cache-algorithm: arc
   listen: 0.0.0.0:7874
   ipv6: false
-  respect-rules: false
+  respect-rules: true
   default-nameserver:
     - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   nameserver:
     - 202.103.24.68
     - 119.29.29.29
