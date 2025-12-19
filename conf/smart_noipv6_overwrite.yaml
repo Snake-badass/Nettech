@@ -42,7 +42,7 @@ geox-url:
   geoip: https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
   geosite: https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
   asn: https://testingcf.jsdelivr.net/gh/xishang0128/geoip@release/GeoLite2-ASN.mmdb
-
+  
 # 嗅探
 sniffer:
   enable: true
@@ -211,6 +211,8 @@ rules:
   - RULE-SET,dns_list,China
   - RULE-SET,direct_list,China
   - RULE-SET,direct_ip,China
+  - RULE-SET,Custom_Direct_IP,China
+  - RULE-SET,Custom_Direct_Domain,China
   - RULE-SET,pikpak_list,Pikpak
   - RULE-SET,pikpak_ip,Pikpak
   - RULE-SET,jp_list,JP-manual
@@ -227,6 +229,8 @@ rules:
   - RULE-SET,ai_list,AI
   - RULE-SET,social_list,SocialMedia
   - RULE-SET,proxy_list,Proxy
+  - RULE-SET,Custom_Proxy_Domain,Proxy
+  - RULE-SET,Custom_Proxy_IP,Proxy
   # pre-defined rulesets
   - RULE-SET,dmm_domain,JP-manual
   - RULE-SET,pikpak_domain,Pikpak
@@ -261,6 +265,37 @@ rule-anchor:
   class: &class { type: http, interval: 86400, behavior: classical, format: text }
 
 rule-providers:
+  Custom_Direct_Domain:
+    behavior: domain
+    interval: 86400
+    path: ./rule_provider/Custom_Direct_Classical.yaml
+    type: http
+    url: "https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct_Domain.yaml"
+
+  Custom_Direct_IP:
+    behavior: classical
+    interval: 86400
+    path: ./rule_provider/Custom_Direct_Classical.yaml
+    type: http
+    url: "https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Direct_Classical_IP.yaml"
+    proxy: DIRECT
+
+  Custom_Proxy_Domain:
+    behavior: domain
+    interval: 86400
+    path: ./rule_provider/Custom_Proxy_Classical.yaml
+    type: http
+    url: "https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Proxy_Domain.yaml"
+    proxy: DIRECT
+
+  Custom_Proxy_IP:
+    behavior: classical
+    interval: 86400
+    path: ./rule_provider/Custom_Proxy_Classical.yaml
+    type: http
+    url: "https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Proxy_Classical_IP.yaml"
+    proxy: DIRECT
+    
   dns_list:
     {
       <<: *class,
