@@ -35,8 +35,6 @@ profile:
   store-selected: true
   store-fake-ip: true
 ipv6: false
-tcp-concurrent: true
-unified-delay: true
 
 # 嗅探
 sniffer:
