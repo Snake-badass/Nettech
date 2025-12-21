@@ -113,8 +113,27 @@ group1: &group1
     - NB-manual
     - WD-manual
     - WM-manual
-    - Asia-smart
-    - West-smart
+    - HK-manual
+    - TW-manual
+    - JP-manual
+    - SG-manual
+    - US-manual
+    - All-manual
+    - Reject
+
+group2: &group2
+  type: select
+  proxies:
+    - Mainland
+    - NB-manual
+    - WD-manual
+    - WM-manual
+    - HK-smart
+    - TW-smart
+    - SG-smart
+    - JP-smart
+    - KR-smart
+    - US-smart
     - HK-manual
     - TW-manual
     - JP-manual
@@ -127,18 +146,18 @@ group1: &group1
 proxy-groups:
   - { name: Proxy, <<: *group1 }
   - { name: China, <<: *group1 }
-  - { name: Hentai, <<: *group1 }
-  - { name: HentaiRegion, <<: *group1 }
-  - { name: Youtube, <<: *group1 }
+  - { name: Hentai, <<: *group2 }
+  - { name: HentaiRegion, <<: *group2 }
+  - { name: Youtube, <<: *group2 }
   - { name: Pikpak, <<: *group1 }
   - { name: Microsoft, <<: *group1 }
   - { name: Google, <<: *group1 }
   - { name: Apple, <<: *group1 }
   - { name: Scholar, <<: *group1 }
   - { name: AI, <<: *group1 }
-  - { name: SocialMedia, <<: *group1 }
+  - { name: SocialMedia, <<: *group2 }
   - { name: Block, <<: *group1 }
-  - { name: Match, <<: *group1 }
+  - { name: Match, <<: *group2 }
 
   # 代理组
   - name: NB-manual
@@ -198,27 +217,75 @@ proxy-groups:
       - WM
     filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期|Traffic|Expire)).)*$"
 
-  - name: Asia-smart
+  - name: HK-smart
     type: smart
     use:
       - NB
-    filter: "(?i)香港|台湾|新加坡|日本|韩国"
-    uselightgbm: false
+    filter: "(?i)香港"
+    uselightgbm: true
     collectdata: false
     interval: 300
-    policy-priority: "(?i)(香港.*流媒体解锁|香港.*IPv6):1.5;(?i)(香港.*hy2|新加坡):1.3;(?i)台湾:1.0;(?i)日本:1.2;(?i)韩国:1.0"
+    policy-priority: "hy2:1.2"
     prefer-asn: true
     lazy: true
 
-  - name: West-smart
+  - name: TW-smart
     type: smart
     use:
       - NB
-    filter: "(?i)美国|拉斯维加斯|凤凰城|纽约|加拿大|德国|英国"
-    uselightgbm: false
+    filter: "(?i)台湾"
+    uselightgbm: true
     collectdata: false
     interval: 300
-    policy-priority: "(?i)((拉斯维加斯|凤凰城|纽约).*hy2):1.5;(?i)美国:1.3;(?i)加拿大:1.0;(?i)德国:1.3;英国:0.8"
+    policy-priority: "hy2:1.2"
+    prefer-asn: true
+    lazy: true
+
+  - name: SG-smart
+    type: smart
+    use:
+      - NB
+    filter: "(?i)新加坡"
+    uselightgbm: true
+    collectdata: false
+    interval: 300
+    policy-priority: "hy2:1.2"
+    prefer-asn: true
+    lazy: true
+
+  - name: JP-smart
+    type: smart
+    use:
+      - NB
+    filter: "(?i)日本"
+    uselightgbm: true
+    collectdata: false
+    interval: 300
+    policy-priority: "hy2:1.2"
+    prefer-asn: true
+    lazy: true
+    
+  - name: KR-smart
+    type: smart
+    use:
+      - NB
+    filter: "(?i)韩国"
+    uselightgbm: true
+    collectdata: false
+    interval: 300
+    policy-priority: "hy2:1.2"
+    prefer-asn: true
+    lazy: true
+    
+  - name: US-smart
+    type: smart
+    use:
+      - NB
+    filter: "(?i)美国|拉斯维加斯|凤凰城|纽约"
+    uselightgbm: true
+    collectdata: false
+    interval: 300
+    policy-priority: "hy2:0.8"
     prefer-asn: true
     lazy: true
 
