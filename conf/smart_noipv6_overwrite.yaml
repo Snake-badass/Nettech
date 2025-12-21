@@ -134,6 +134,7 @@ group2: &group2
     - JP-smart
     - KR-smart
     - US-smart
+    - EU-smart
     - HK-manual
     - TW-manual
     - JP-manual
@@ -286,6 +287,17 @@ proxy-groups:
     collectdata: false
     interval: 300
     policy-priority: "hy2:0.8"
+    prefer-asn: true
+    lazy: true
+
+  - name: EU-smart
+    type: smart
+    use:
+      - NB
+    filter: "(?i)德国|英国|加拿大"
+    uselightgbm: true
+    collectdata: false
+    interval: 300
     prefer-asn: true
     lazy: true
 
