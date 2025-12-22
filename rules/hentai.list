@@ -1,14 +1,17 @@
+# --- 论坛和资源站点 ---
 DOMAIN-KEYWORD,xsiji
 DOMAIN-KEYWORD,xisiji
-DOMAIN-KEYWORD,rule34
-DOMAIN-SUFFIX,boomio-cdn.com
 DOMAIN-KEYWORD,kemono
 DOMAIN-KEYWORD,coomer
+DOMAIN-KEYWORD,simpcity
+DOMAIN-SUFFIX,javbus.com
+DOMAIN-KEYWORD,south-plus
+# --- 视频 ---
+DOMAIN-KEYWORD,rule34
+DOMAIN-SUFFIX,boomio-cdn.com
 DOMAIN-KEYWORD,bunkr
 DOMAIN-KEYWORD,bunkr-albums
-DOMAIN-KEYWORD,simpcity
 DOMAIN-KEYWORD,javmost
-DOMAIN-SUFFIX,javbus.com
 DOMAIN-KEYWORD,supjav
 DOMAIN-SUFFIX,supremejav.com
 DOMAIN-KEYWORD,tnaflix
@@ -23,26 +26,30 @@ DOMAIN-KEYWORD,jdev
 DOMAIN-KEYWORD,youjizz
 DOMAIN-KEYWORD,javbest
 DOMAIN-SUFFIX,iwara.tv
-DOMAIN-KEYWORD,2dfan
-DOMAIN-SUFFIX,acgxp.com
-DOMAIN-KEYWORD,south-plus
+# --- 图片 ---
 DOMAIN-KEYWORD,exhentai
 DOMAIN-KEYWORD,e-hentai
 DOMAIN-SUFFIX,hath.network
+DOMAIN-SUFFIX,hitomi.la
+DOMAIN-KEYWORD,18comic
+DOMAIN-KEYWORD,xsnvshen
+DOMAIN-SUFFIX,wnacg.com
+DOMAIN-SUFFIX,gold-usergeneratedcontent.net
+DOMAIN-SUFFIX,hitomi.si
+# --- 游戏 ---
 DOMAIN-SUFFIX,ggbases.com
 DOMAIN-SUFFIX,kungal.com
 DOMAIN-SUFFIX,moyu.moe
-DOMAIN-SUFFIX,asmr.one
-DOMAIN-SUFFIX,asmr-200.com
-DOMAIN-SUFFIX,hitomi.la
-DOMAIN-SUFFIX,hitomi.si
-DOMAIN-SUFFIX,gold-usergeneratedcontent.net
-DOMAIN-SUFFIX,wnacg.com
-DOMAIN-SUFFIX,qy0.ru
+DOMAIN-KEYWORD,2dfan
 DOMAIN-SUFFIX,vndb.org
 DOMAIN-SUFFIX,ryuugames.com
-DOMAIN-KEYWORD,18comic
+DOMAIN-SUFFIX,acgxp.com
+# --- ASMR ---
+DOMAIN-SUFFIX,asmr.one
+DOMAIN-SUFFIX,asmr-200.com
+# --- 小说 ---
 DOMAIN-SUFFIX,hlib.cc
-DOMAIN-KEYWORD,xsnvshen
+# --- 其他 ---
+DOMAIN-SUFFIX,qy0.ru
 DOMAIN-SUFFIX,omnivore.app
 DOMAIN-SUFFIX,img.achost.top
