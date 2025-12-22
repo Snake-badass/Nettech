@@ -3,3 +3,5 @@ IP-CIDR,119.29.29.29/32,no-resolve
 IP-CIDR,180.184.1.1/32,no-resolve
 IP-CIDR,180.184.1.1/32,no-resolve
 IP-CIDR,219.79.214.159/32,no-resolve
+# 临时
+IP-CIDR,194.246.114.101/32,,no-resolve
