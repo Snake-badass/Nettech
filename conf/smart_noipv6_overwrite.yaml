@@ -267,6 +267,7 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)台湾"
     uselightgbm: true
     collectdata: false
@@ -279,6 +280,7 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)新加坡"
     uselightgbm: true
     collectdata: false
@@ -291,6 +293,7 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)日本"
     uselightgbm: true
     collectdata: false
@@ -303,6 +306,7 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)韩国"
     uselightgbm: true
     collectdata: false
@@ -315,6 +319,7 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)美国|拉斯维加斯|凤凰城|纽约"
     uselightgbm: true
     collectdata: false
@@ -327,6 +332,7 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)德国|英国|加拿大"
     uselightgbm: true
     collectdata: false
