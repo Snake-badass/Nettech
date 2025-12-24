@@ -15,6 +15,11 @@ proxy-providers:
     type: http
     proxy: Mainland
     filter: "^((?!(测试|客户端|官网|教程)).)*$"
+  XZY:
+    url: "url"
+    type: http
+    proxy: Mainland
+    filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
     
 # 基本代理
 proxies:
@@ -124,6 +129,7 @@ group1: &group1
     - NB-manual
     - WD-manual
     - WM-manual
+    - XZY-manual
     - HK-manual
     - TW-manual
     - JP-manual
@@ -177,7 +183,7 @@ proxy-groups:
     use:
       - NB
     url: "https://www.gstatic.com/generate_204"
-    interval: 300
+    interval: 200
     filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期)).)*$"
 
   - name: WD-manual
@@ -195,6 +201,14 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 3600
     filter: "^((?!(官网|客户端)).)*$"
+
+  - name: XZY-manual
+    type: select
+    use:
+      - XZY
+    url: "https://www.gstatic.com/generate_204"
+    interval: 200
+    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
 
 # 地理策略层-手动
 
@@ -229,6 +243,7 @@ proxy-groups:
       - NB
       - WD
       - WM
+      - XZY
     filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期|Traffic|Expire)).)*$"
 
 # 地理策略层-智能 
@@ -238,11 +253,11 @@ proxy-groups:
     type: smart
     use:
       - NB
+      - XZY
     filter: "(?i)香港"
     uselightgbm: true
     collectdata: false
-    interval: 300
-    policy-priority: "hy2:1.2"
+    interval: 200
     prefer-asn: true
     lazy: true
 
@@ -253,8 +268,7 @@ proxy-groups:
     filter: "(?i)台湾"
     uselightgbm: true
     collectdata: false
-    interval: 300
-    policy-priority: "hy2:1.2"
+    interval: 200
     prefer-asn: true
     lazy: true
 
@@ -265,8 +279,7 @@ proxy-groups:
     filter: "(?i)新加坡"
     uselightgbm: true
     collectdata: false
-    interval: 300
-    policy-priority: "hy2:1.2"
+    interval: 200
     prefer-asn: true
     lazy: true
 
@@ -277,8 +290,7 @@ proxy-groups:
     filter: "(?i)日本"
     uselightgbm: true
     collectdata: false
-    interval: 300
-    policy-priority: "hy2:1.2"
+    interval: 200
     prefer-asn: true
     lazy: true
     
@@ -289,8 +301,7 @@ proxy-groups:
     filter: "(?i)韩国"
     uselightgbm: true
     collectdata: false
-    interval: 300
-    policy-priority: "hy2:1.2"
+    interval: 200
     prefer-asn: true
     lazy: true
     
@@ -301,8 +312,7 @@ proxy-groups:
     filter: "(?i)美国|拉斯维加斯|凤凰城|纽约"
     uselightgbm: true
     collectdata: false
-    interval: 300
-    policy-priority: "hy2:0.8"
+    interval: 200
     prefer-asn: true
     lazy: true
 
@@ -311,10 +321,9 @@ proxy-groups:
     use:
       - NB
     filter: "(?i)德国|英国|加拿大"
-    policy-priority: "hy2:0.8"
     uselightgbm: true
     collectdata: false
-    interval: 300
+    interval: 200
     prefer-asn: true
     lazy: true
 
