@@ -145,6 +145,7 @@ group2: &group2
     - NB-manual
     - WD-manual
     - WM-manual
+    - XZY-manual
     - HK-smart
     - TW-smart
     - SG-smart
