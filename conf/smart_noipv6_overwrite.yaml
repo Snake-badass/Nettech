@@ -364,7 +364,7 @@ rules:
   # pre-defined rulesets
   - RULE-SET,apple@cn_domain,Apple
   - RULE-SET,apple_domain,Apple
-  - RULE-SET,steam_CDN,GlobalDirect
+  - RULE-SET,Steam_CDN,GlobalDirect
   - RULE-SET,pikpak_domain,Pikpak
   - RULE-SET,dmm_domain,JP-manual
   - RULE-SET,github_domain,Github
