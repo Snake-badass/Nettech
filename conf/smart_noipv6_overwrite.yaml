@@ -360,11 +360,9 @@ rules:
   - RULE-SET,social_list,SocialMedia
   - RULE-SET,media_list,StreamMedia
   - RULE-SET,proxy_list,Proxy
-  - RULE-SET,Custom_Proxy,Proxy # 配置文件中含有 no-resolve
   # pre-defined rulesets
   - RULE-SET,apple@cn_domain,Apple
   - RULE-SET,apple_domain,Apple
-  - RULE-SET,Steam_CDN,GlobalDirect
   - RULE-SET,pikpak_domain,Pikpak
   - RULE-SET,dmm_domain,JP-manual
   - RULE-SET,github_domain,Github
@@ -396,19 +394,6 @@ rule-anchor:
   class: &class { type: http, interval: 86400, behavior: classical, format: text }
 
 rule-providers:
-  Custom_Proxy:
-    behavior: classical
-    interval: 86400
-    path: ./rule_provider/Custom_Proxy_Classical.yaml
-    type: http
-    url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Proxy_Classical.yaml"
-    
-  Steam_CDN:
-    behavior: classical
-    interval: 86400
-    path: ./rule_provider/Steam_CDN_Classical.yaml
-    type: http
-    url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Steam_CDN_Classical.yaml"
     
   fakeipfilter_domain:
     {
