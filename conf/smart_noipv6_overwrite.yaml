@@ -166,18 +166,18 @@ group2: &group2
 # 应用策略层 - Select手动选择，支持多场景应用优化
 proxy-groups:
   - { name: Proxy, <<: *group1 }
+  - { name: GlobalDirect, <<: *group1 }
   - { name: Hentai, <<: *group2 }
   - { name: HentaiRegion, <<: *group2 }
   - { name: StreamMedia, <<: *group2 }
   - { name: SocialMedia, <<: *group2 }
-  - { name: Pikpak, <<: *group1 }
+  - { name: Scholar, <<: *group1 }
   - { name: AI, <<: *group1 }
   - { name: Google, <<: *group1 }
   - { name: Microsoft, <<: *group1 }
   - { name: Github, <<: *group1 }
-  - { name: Scholar, <<: *group1 }
+  - { name: Pikpak, <<: *group1 }
   - { name: Apple, <<: *group1 }
-  - { name: GlobalDirect, <<: *group1 }
   - { name: Block, <<: *group1 }
   - { name: Match, <<: *group2 }
 
@@ -394,7 +394,6 @@ rule-anchor:
   class: &class { type: http, interval: 86400, behavior: classical, format: text }
 
 rule-providers:
-    
   fakeipfilter_domain:
     {
       <<: *domain,
