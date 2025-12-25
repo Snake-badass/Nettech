@@ -166,18 +166,18 @@ group2: &group2
 # 应用策略层 - Select手动选择，支持多场景应用优化
 proxy-groups:
   - { name: Proxy, <<: *group1 }
-  - { name: GlobalDirect, <<: *group1 }
   - { name: Hentai, <<: *group2 }
   - { name: HentaiRegion, <<: *group2 }
-  - { name: Youtube, <<: *group2 }
+  - { name: StreamMedia, <<: *group2 }
+  - { name: SocialMedia, <<: *group2 }
   - { name: Pikpak, <<: *group1 }
+  - { name: AI, <<: *group1 }
+  - { name: Google, <<: *group1 }
   - { name: Microsoft, <<: *group1 }
   - { name: Github, <<: *group1 }
-  - { name: Google, <<: *group1 }
-  - { name: Apple, <<: *group1 }
   - { name: Scholar, <<: *group1 }
-  - { name: AI, <<: *group1 }
-  - { name: SocialMedia, <<: *group2 }
+  - { name: Apple, <<: *group1 }
+  - { name: GlobalDirect, <<: *group1 }
   - { name: Block, <<: *group1 }
   - { name: Match, <<: *group2 }
 
@@ -344,49 +344,49 @@ rules:
   - RULE-SET,dns_list,GlobalDirect
   - RULE-SET,direct_list,GlobalDirect
   - RULE-SET,direct_ip,GlobalDirect # 配置文件中含有 no-resolve
+  - RULE-SET,hk_list,HK-manual
+  - RULE-SET,tw_list,TW-manual
+  - RULE-SET,sg_list,SG-manual
+  - RULE-SET,jp_list,JP-manual
+  - RULE-SET,kr_list,JP-manual
+  - RULE-SET,us_list,US-manual
   - RULE-SET,pikpak_list,Pikpak
   - RULE-SET,pikpak_ip,Pikpak # 配置文件中含有 no-resolve
-  - RULE-SET,jp_list,JP-manual
-  - RULE-SET,tw_list,TW-manual
-  - RULE-SET,us_list,US-manual
-  - RULE-SET,kr_list,JP-manual
-  - RULE-SET,sg_list,SG-manual
-  - RULE-SET,hk_list,HK-manual
   - RULE-SET,hentai_list,Hentai
   - RULE-SET,hentairegion_list,HentaiRegion
-  - RULE-SET,media_list,Youtube
   - RULE-SET,scholar_list,Scholar
-  - RULE-SET,service_list,Microsoft
+  - RULE-SET,service_list,Github
   - RULE-SET,ai_list,AI
   - RULE-SET,social_list,SocialMedia
+  - RULE-SET,media_list,StreamMedia
   - RULE-SET,proxy_list,Proxy
-  - RULE-SET,Custom_Proxy,Proxy
+  - RULE-SET,Custom_Proxy,Proxy # 配置文件中含有 no-resolve
   # pre-defined rulesets
-  - RULE-SET,dmm_domain,JP-manual
-  - RULE-SET,pikpak_domain,Pikpak
   - RULE-SET,apple@cn_domain,Apple
   - RULE-SET,apple_domain,Apple
+  - RULE-SET,steam_CDN,GlobalDirect
+  - RULE-SET,pikpak_domain,Pikpak
+  - RULE-SET,dmm_domain,JP-manual
   - RULE-SET,github_domain,Github
   - RULE-SET,x_domain,SocialMedia
   - RULE-SET,telegram_domain,SocialMedia
   - RULE-SET,telegram_ip,SocialMedia,no-resolve
-  - RULE-SET,steam_CDN,GlobalDirect
+  - RULE-SET,youtube_domain,StreamMedia
+  - RULE-SET,category-social-media-!cn_domain,SocialMedia
+  - RULE-SET,category-scholar-!cn_domain,Scholar
+  - RULE-SET,category-porn_domain,Hentai
   - RULE-SET,ai,AI
-  - RULE-SET,youtube_domain,Youtube
   - RULE-SET,onedrive_domain,Microsoft
   - RULE-SET,microsoft_domain,Microsoft
   - RULE-SET,google_ip,Google,no-resolve
   - RULE-SET,google_domain,Google
-  - RULE-SET,category-scholar-!cn_domain,Scholar
-  - RULE-SET,category-social-media-!cn_domain,SocialMedia
-  - RULE-SET,category-porn_domain,Hentai
-  - RULE-SET,category-ads-all_domain,Block
-  - RULE-SET,block_domain,Block
   - RULE-SET,gfw_domain,Proxy
   - RULE-SET,geolocation-!cn,Proxy
   - RULE-SET,private_domain,GlobalDirect
   - RULE-SET,cn_domain,GlobalDirect
   - RULE-SET,cn_ip,GlobalDirect,no-resolve
+  - RULE-SET,category-ads-all_domain,Block
+  - RULE-SET,block_domain,Block
   - MATCH,Match
 
 # 规则集
