@@ -19,9 +19,11 @@ proxy-providers:
     url: "url"
     type: http
     proxy: Mainland
+    interval: 1440
     filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
     
 # 基本代理
+# 用于订阅和拒绝连接
 proxies:
   - { name: Mainland, type: direct, udp: true }
   - { name: Reject, type: reject, udp: true }
@@ -33,8 +35,8 @@ redir-port: 7892
 mixed-port: 7893
 tproxy-port: 7895
 mode: rule
-ipv6: false
 allow-lan: true
+ipv6: false
 log-level: warning
 external-controller: 0.0.0.0:9090
 bind-address: "*"
@@ -59,7 +61,7 @@ geox-url:
 experimental:
   quic-go-disable-gso: true 
 
-# TUN模式配置
+# TUN 模式配置
 tun:
   enable: false
   stack: mixed
@@ -70,7 +72,7 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   
-# 嗅探
+# 嗅探链接
 sniffer:
   enable: true
   sniff:
@@ -96,7 +98,7 @@ sniffer:
     - "+.push.apple.com"
   parse-pure-ip: true
 
-# DNS
+# DNS 设置
 dns:
   enable: true
   cache-algorithm: arc
@@ -164,12 +166,13 @@ group2: &group2
 # 应用策略层 - Select手动选择，支持多场景应用优化
 proxy-groups:
   - { name: Proxy, <<: *group1 }
-  - { name: China, <<: *group1 }
+  - { name: GlobalDirect, <<: *group1 }
   - { name: Hentai, <<: *group2 }
   - { name: HentaiRegion, <<: *group2 }
   - { name: Youtube, <<: *group2 }
   - { name: Pikpak, <<: *group1 }
   - { name: Microsoft, <<: *group1 }
+  - { name: Github, <<: *group1 }
   - { name: Google, <<: *group1 }
   - { name: Apple, <<: *group1 }
   - { name: Scholar, <<: *group1 }
@@ -178,7 +181,7 @@ proxy-groups:
   - { name: Block, <<: *group1 }
   - { name: Match, <<: *group2 }
 
-  # 机场组
+  # 机场组-手动
   - name: NB-manual
     type: select
     use:
@@ -212,7 +215,6 @@ proxy-groups:
     filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
 
 # 地理策略层-手动
-
   - name: HK-manual
     type: select
     include-all: true
@@ -249,7 +251,6 @@ proxy-groups:
 
 # 地理策略层-智能 
 # 政策权重数值越大优先级越低，不知道为什么别的配置都说反了
-
   - name: HK-smart
     type: smart
     use:
@@ -340,11 +341,11 @@ rules:
   # 拦截规则
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT  # 阻止 QUIC
   # self-defined rulesets
-  - RULE-SET,dns_list,China
-  - RULE-SET,direct_list,China
-  - RULE-SET,direct_ip,China
+  - RULE-SET,dns_list,GlobalDirect
+  - RULE-SET,direct_list,GlobalDirect
+  - RULE-SET,direct_ip,GlobalDirect # 配置文件中含有 no-resolve
   - RULE-SET,pikpak_list,Pikpak
-  - RULE-SET,pikpak_ip,Pikpak
+  - RULE-SET,pikpak_ip,Pikpak # 配置文件中含有 no-resolve
   - RULE-SET,jp_list,JP-manual
   - RULE-SET,tw_list,TW-manual
   - RULE-SET,us_list,US-manual
@@ -359,19 +360,19 @@ rules:
   - RULE-SET,ai_list,AI
   - RULE-SET,social_list,SocialMedia
   - RULE-SET,proxy_list,Proxy
-  - RULE-SET,Custom_Proxy_Domain,Proxy
-  - RULE-SET,Custom_Proxy_IP,Proxy
+  - RULE-SET,Custom_Proxy,Proxy
   # pre-defined rulesets
   - RULE-SET,dmm_domain,JP-manual
   - RULE-SET,pikpak_domain,Pikpak
   - RULE-SET,apple@cn_domain,Apple
   - RULE-SET,apple_domain,Apple
+  - RULE-SET,github_domain,Github
   - RULE-SET,x_domain,SocialMedia
-  - RULE-SET,youtube_domain,Youtube
   - RULE-SET,telegram_domain,SocialMedia
   - RULE-SET,telegram_ip,SocialMedia,no-resolve
+  - RULE-SET,steam_CDN,GlobalDirect
   - RULE-SET,ai,AI
-  - RULE-SET,github_domain,Microsoft
+  - RULE-SET,youtube_domain,Youtube
   - RULE-SET,onedrive_domain,Microsoft
   - RULE-SET,microsoft_domain,Microsoft
   - RULE-SET,google_ip,Google,no-resolve
@@ -383,9 +384,9 @@ rules:
   - RULE-SET,block_domain,Block
   - RULE-SET,gfw_domain,Proxy
   - RULE-SET,geolocation-!cn,Proxy
-  - RULE-SET,private_domain,China
-  - RULE-SET,cn_domain,China
-  - RULE-SET,cn_ip,China,no-resolve
+  - RULE-SET,private_domain,GlobalDirect
+  - RULE-SET,cn_domain,GlobalDirect
+  - RULE-SET,cn_ip,GlobalDirect,no-resolve
   - MATCH,Match
 
 # 规则集
@@ -395,23 +396,21 @@ rule-anchor:
   class: &class { type: http, interval: 86400, behavior: classical, format: text }
 
 rule-providers:
-
-  Custom_Proxy_Domain:
-    behavior: domain
-    interval: 86400
-    path: ./rule_provider/Custom_Proxy_Classical.yaml
-    type: http
-    url: "https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Proxy_Domain.yaml"
-    proxy: DIRECT
-
-  Custom_Proxy_IP:
-    behavior: classical
-    interval: 86400
-    path: ./rule_provider/Custom_Proxy_Classical_ip.yaml
-    type: http
-    url: "https://testingcf.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Custom_Proxy_Classical_IP.yaml"
-    proxy: DIRECT
-    
+  Custom_Proxy:
+    {
+      <<: *class,
+      url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Proxy_Classical.yaml",
+    }  
+  steam_CDN:
+    {
+      <<: *class,
+      url: "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Steam_CDN_Classical.yaml",
+    }    
+  fakeipfilter_domain:
+    {
+      <<: *domain,
+      url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs",
+    }
   dns_list:
     {
       <<: *class,
@@ -626,9 +625,4 @@ rule-providers:
     {
       <<: *ip,
       url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs",
-    }
-  fakeipfilter_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs",
     }
