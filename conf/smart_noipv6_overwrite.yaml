@@ -344,7 +344,6 @@ proxy-groups:
 rules:
   # 拦截规则
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT  # 阻止 QUIC
-  
   # 自定义维护规则
   - RULE-SET,dns_list,GlobalDirect
   - RULE-SET,direct_list,GlobalDirect
