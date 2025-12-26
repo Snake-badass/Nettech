@@ -230,6 +230,11 @@ proxy-groups:
     include-all: true
     filter: "(?i)日|日本|🇯🇵|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan"
 
+  - name: KR-manual
+    type: select
+    include-all: true
+    filter: "(?i)韩|韩国|KR|Korea"
+    
   - name: SG-manual
     type: select
     include-all: true
@@ -239,15 +244,6 @@ proxy-groups:
     type: select
     include-all: true
     filter: "((?i)美|美国|波特兰|纽约|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|United States)"
-
-  - name: All-manual
-    type: select
-    use:
-      - NB
-      - WD
-      - WM
-      - XZY
-    filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期|Traffic|Expire)).)*$"
 
 # 地理策略层-智能 
 # 政策权重数值越大优先级越低，不知道为什么别的配置都说反了
@@ -351,7 +347,7 @@ rules:
   - RULE-SET,tw_list,TW-manual
   - RULE-SET,sg_list,SG-manual
   - RULE-SET,jp_list,JP-manual
-  - RULE-SET,kr_list,JP-manual
+  - RULE-SET,kr_list,KR-manual
   - RULE-SET,us_list,US-manual
   - RULE-SET,pikpak_list,Pikpak
   - RULE-SET,pikpak_ip,Pikpak # 配置文件中含有 no-resolve
@@ -373,6 +369,7 @@ rules:
   - GEOSITE,spankbang,HentaiRegion
   - GEOSITE,xhamster,HentaiRegion
   - GEOSITE,x,SocialMedia
+  - GEOIP,twitter,SocialMedia,no-resolve
   - GEOSITE,telegram,SocialMedia
   - GEOIP,telegram,SocialMedia,no-resolve
   - GEOSITE,youtube,StreamMedia
