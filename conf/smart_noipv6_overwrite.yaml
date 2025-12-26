@@ -350,6 +350,7 @@ rules:
   - RULE-SET,jp_list,JP-manual
   - RULE-SET,kr_list,JP-manual
   - RULE-SET,us_list,US-manual
+  - GEOSITE,ehentai,Hentai
   - RULE-SET,pikpak_list,Pikpak
   - RULE-SET,pikpak_ip,Pikpak # 配置文件中含有 no-resolve
   - RULE-SET,hentai_list,Hentai
