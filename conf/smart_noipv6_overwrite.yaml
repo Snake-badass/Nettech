@@ -51,11 +51,12 @@ profile:
   store-fake-ip: true
   
 # geo 链接
+# 采用 https://github.com/MetaCubeX/meta-rules-dat/tree/master 项目中的文件
 geox-url:
-  mmdb: https://testingcf.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/Country.mmdb
-  geoip: https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
-  geosite: https://testingcf.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
-  asn: https://testingcf.jsdelivr.net/gh/xishang0128/geoip@release/GeoLite2-ASN.mmdb
+  mmdb: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  asn: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb
 
 # 实验性功能
 experimental:
@@ -336,11 +337,15 @@ proxy-groups:
     prefer-asn: true
 
 # 规则匹配
+# 把小的，需要优先匹配的规则放在前面，大的兜底的规则放在后面
+# 优先使用 geosite，geoip的规则
+# geosite，geoip 的名字可以参考 https://github.com/MetaCubeX/meta-rules-dat/tree/meta 项目
+# 上述项目的规则也可以通过 ruleset 的方式引入
 rules:
-  # Force match
   # 拦截规则
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT  # 阻止 QUIC
-  # self-defined rulesets
+  
+  # 自定义维护规则
   - RULE-SET,dns_list,GlobalDirect
   - RULE-SET,direct_list,GlobalDirect
   - RULE-SET,direct_ip,GlobalDirect # 配置文件中含有 no-resolve
@@ -350,42 +355,45 @@ rules:
   - RULE-SET,jp_list,JP-manual
   - RULE-SET,kr_list,JP-manual
   - RULE-SET,us_list,US-manual
-  - GEOSITE,ehentai,Hentai
   - RULE-SET,pikpak_list,Pikpak
   - RULE-SET,pikpak_ip,Pikpak # 配置文件中含有 no-resolve
   - RULE-SET,hentai_list,Hentai
   - RULE-SET,hentairegion_list,HentaiRegion
   - RULE-SET,scholar_list,Scholar
   - RULE-SET,service_list,Github
-  - RULE-SET,ai_list,AI
   - RULE-SET,social_list,SocialMedia
   - RULE-SET,media_list,StreamMedia
   - RULE-SET,proxy_list,Proxy
-  # pre-defined rulesets
-  - RULE-SET,apple@cn_domain,Apple
-  - RULE-SET,apple_domain,Apple
-  - RULE-SET,pikpak_domain,Pikpak
-  - RULE-SET,dmm_domain,JP-manual
-  - RULE-SET,github_domain,Github
-  - RULE-SET,x_domain,SocialMedia
-  - RULE-SET,telegram_domain,SocialMedia
-  - RULE-SET,telegram_ip,SocialMedia,no-resolve
-  - RULE-SET,youtube_domain,StreamMedia
-  - RULE-SET,category-social-media-!cn_domain,SocialMedia
-  - RULE-SET,category-scholar-!cn_domain,Scholar
-  - RULE-SET,category-porn_domain,Hentai
-  - RULE-SET,ai,AI
-  - RULE-SET,onedrive_domain,Microsoft
-  - RULE-SET,microsoft_domain,Microsoft
-  - RULE-SET,google_ip,Google,no-resolve
-  - RULE-SET,google_domain,Google
-  - RULE-SET,gfw_domain,Proxy
-  - RULE-SET,geolocation-!cn,Proxy
-  - RULE-SET,private_domain,GlobalDirect
-  - RULE-SET,cn_domain,GlobalDirect
-  - RULE-SET,cn_ip,GlobalDirect,no-resolve
-  - RULE-SET,category-ads-all_domain,Block
+  # 数据库规则 具体
+  - GEOSITE,pikpak,Pikpak
+  - GEOSITE,dmm,JP-manual
+  - GEOSITE,ehentai,Hentai
+  - GEOSITE,xvideo,HentaiRegion
+  - GEOSITE,spankbang,HentaiRegion
+  - GEOSITE,xhamster,HentaiRegion
+  - GEOSITE,x,SocialMedia
+  - GEOSITE,telegram,SocialMedia
+  - GEOIP,telegram,SocialMedia,no-resolve
+  - GEOSITE,youtube,StreamMedia
+  - GEOSITE,apple,Apple
+  - GEOSITE,github,Github
+  - GEOSITE,onedrive,Microsoft
+  - GEOSITE,microsoft,Microsoft
+  - GEOIP,google,Google,no-resolve
+  - GEOSITE,google,Google
+  # 数据库规则 兜底
+  - GEOSITE,category-ai-!cn,AI
+  - GEOSITE,category-social-media-!cn,SocialMedia
+  - GEOSITE,category-scholar-!cn,Scholar
+  - GEOSITE,category-porn,Hentai
+  - GEOSITE,gfw,Proxy
+  - GEOSITE,geolocation-!cn,Proxy
+  - GEOSITE,private,GlobalDirect
+  - GEOSITE,cn,GlobalDirect
+  - GEOIP,cn,GlobalDirect,no-resolve
   - RULE-SET,block_domain,Block
+  - GEOSITE,category-ads-all,Block
+  # 最终兜底
   - MATCH,Match
 
 # 规则集
@@ -395,6 +403,7 @@ rule-anchor:
   class: &class { type: http, interval: 86400, behavior: classical, format: text }
 
 rule-providers:
+# 自定义维护规则
   fakeipfilter_domain:
     {
       <<: *domain,
@@ -495,123 +504,10 @@ rule-providers:
       <<: *class,
       url: "https://raw.githubusercontent.com/Snake-badass/Nettech/refs/heads/main/rules/social.list",
     }
-  apple_domain:
-    {
-      <<: *domain,
-      url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple.mrs",
-    }
+
+# 额外规则  
   block_domain:
     {
       <<: *class,
       url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list",
-    }
-  private_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs",
-    }
-  ai:
-    {
-      <<: *domain,
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs",
-    }
-  youtube_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs",
-    }
-  google_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs",
-    }
-  github_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs",
-    }
-  telegram_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs",
-    }
-  onedrive_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs",
-    }
-  microsoft_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs",
-    }
-  apple@cn_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple@cn.mrs",
-    }
-  x_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/x.mrs",
-    }
-  category-social-media-!cn_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-social-media-!cn.mrs",
-    }
-  category-porn_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs",
-    }
-  category-scholar-!cn_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-scholar-!cn.mrs",
-    }
-  category-ads-all_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ads-all.mrs",
-    }
-  dmm_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/dmm.mrs",
-    }
-  pikpak_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/pikpak.mrs",
-    }
-  gfw_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs",
-    }
-  geolocation-!cn:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs",
-    }
-  cn_domain:
-    {
-      <<: *domain,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs",
-    }
-  cn_ip:
-    {
-      <<: *ip,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs",
-    }
-  google_ip:
-    {
-      <<: *ip,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs",
-    }
-  telegram_ip:
-    {
-      <<: *ip,
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs",
     }
