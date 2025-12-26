@@ -1,17 +1,17 @@
+# --- realme 手机 ---
 DOMAIN-SUFFIX,heytapmobile.com
 DOMAIN-SUFFIX,realme.net
 DOMAIN-SUFFIX,admobile.top
 DOMAIN-SUFFIX,modpim.com
+# --- 偶然发现的未匹配国内网站 ---
 DOMAIN-SUFFIX,jingjingfun.com
-DOMAIN-SUFFIX,time.windows.com
 DOMAIN-KEYWORD,youqian
 DOMAIN-SUFFIX,search.iscrv.com
 DOMAIN-KEYWORD,qiandurebo
-DOMAIN-SUFFIX,52exosome.com
-DOMAIN-SUFFIX,home-for-researchers.com
-DOMAIN-KEYWORD,scholarscope
 DOMAIN-SUFFIX,gudong.fun
 DOMAIN-SUFFIX,qc.qaz.ink
 DOMAIN-SUFFIX,wucai.site
-DOMAIN,wma10226.v.113001.xyz
+# --- 未匹配的国内学术网站 ---
+DOMAIN-SUFFIX,home-for-researchers.com
+DOMAIN-KEYWORD,scholarscope
 DOMAIN-SUFFIX,scidownload.com
