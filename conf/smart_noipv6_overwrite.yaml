@@ -8,7 +8,6 @@ proxy-providers:
     url: "url"
     type: http
     proxy: Mainland
-    interval: 1440
     filter: "^((?!(更新|客户端|显示|教程)).)*$"
   WM:
     url: "url"
@@ -19,7 +18,6 @@ proxy-providers:
     url: "url"
     type: http
     proxy: Mainland
-    interval: 1440
     filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
     
 # 基本代理
