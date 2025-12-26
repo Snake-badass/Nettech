@@ -1,44 +1,38 @@
-# --- 论坛和资源站点 ---
-DOMAIN-KEYWORD,xsiji
-DOMAIN-KEYWORD,xisiji
-DOMAIN-KEYWORD,simpcity
-DOMAIN-SUFFIX,javbus.com
-DOMAIN-KEYWORD,south-plus
-# --- 视频 ---
-DOMAIN-KEYWORD,rule34
+# --- rule34video 播放 cdn---
 DOMAIN-SUFFIX,boomio-cdn.com
+# --- bunkr 托管视频站点 ---
 DOMAIN-KEYWORD,bunkr
 DOMAIN-KEYWORD,bunkr-albums
+# --- javmost 广义匹配 ---
 DOMAIN-KEYWORD,javmost
-DOMAIN-KEYWORD,supjav
+# --- supjav 资源站点 ---
 DOMAIN-SUFFIX,supremejav.com
-DOMAIN-KEYWORD,tnaflix
-DOMAIN-KEYWORD,missav
-DOMAIN-KEYWORD,123av
+# --- missav 资源站点 ---
+DOMAIN-SUFFIX,missav123.com
 DOMAIN-KEYWORD,abre-videos
 DOMAIN-SUFFIX,surrit.com
 DOMAIN-SUFFIX,nineyu.com
 DOMAIN-SUFFIX,fourhoi.com
-DOMAIN-KEYWORD,javfree
-DOMAIN-KEYWORD,jdev
-DOMAIN-KEYWORD,youjizz
-DOMAIN-KEYWORD,javbest
-DOMAIN-SUFFIX,iwara.tv
-# --- 图片 ---
-DOMAIN-SUFFIX,hitomi.la
-DOMAIN-KEYWORD,18comic
-DOMAIN-KEYWORD,xsnvshen
-DOMAIN-SUFFIX,wnacg.com
-DOMAIN-SUFFIX,gold-usergeneratedcontent.net
+# --- 123av 站点 ---
+DOMAIN-SUFFIX,123av.com
+# --- hitomi 资源站点 ---
 DOMAIN-SUFFIX,hitomi.si
-# --- 游戏 ---
+DOMAIN-SUFFIX,hitomi.la
+DOMAIN-SUFFIX,gold-usergeneratedcontent.net
+# --- 秀色女神 ---
+DOMAIN-KEYWORD,xsnvshen
+DOMAIN-SUFFIX,hitomi.si
+# --- wnacg 资源站点 ---
+DOMAIN-SUFFIX,wnacg.com
+DOMAIN-SUFFIX,img.achost.top
+# --- Galgame 网站 ---
 DOMAIN-SUFFIX,ggbases.com
 DOMAIN-SUFFIX,kungal.com
 DOMAIN-SUFFIX,moyu.moe
 DOMAIN-KEYWORD,2dfan
+DOMAIN-SUFFIX,acgxp.com
 DOMAIN-SUFFIX,vndb.org
 DOMAIN-SUFFIX,ryuugames.com
-DOMAIN-SUFFIX,acgxp.com
 # --- ASMR ---
 DOMAIN-SUFFIX,asmr.one
 DOMAIN-SUFFIX,asmr-200.com
@@ -47,4 +41,3 @@ DOMAIN-SUFFIX,hlib.cc
 # --- 其他 ---
 DOMAIN-SUFFIX,qy0.ru
 DOMAIN-SUFFIX,omnivore.app
-DOMAIN-SUFFIX,img.achost.top
