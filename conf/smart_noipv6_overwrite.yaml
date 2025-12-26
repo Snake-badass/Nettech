@@ -135,9 +135,9 @@ group1: &group1
     - HK-manual
     - TW-manual
     - JP-manual
+    - KR-manual
     - SG-manual
     - US-manual
-    - All-manual
     - Reject
 
 group2: &group2
@@ -158,9 +158,9 @@ group2: &group2
     - HK-manual
     - TW-manual
     - JP-manual
+    - KR-manual
     - SG-manual
     - US-manual
-    - All-manual
     - Reject
 
 # 应用策略层 - Select手动选择，支持多场景应用优化
@@ -342,7 +342,7 @@ rules:
   # 自定义维护规则
   - RULE-SET,dns_list,GlobalDirect
   - RULE-SET,direct_list,GlobalDirect
-  - RULE-SET,direct_ip,GlobalDirect,no-resolve # 配置文件中含有 no-resolve
+  - RULE-SET,direct_ip,GlobalDirect,no-resolve
   - RULE-SET,hk_list,HK-manual
   - RULE-SET,tw_list,TW-manual
   - RULE-SET,sg_list,SG-manual
@@ -350,7 +350,7 @@ rules:
   - RULE-SET,kr_list,KR-manual
   - RULE-SET,us_list,US-manual
   - RULE-SET,pikpak_list,Pikpak
-  - RULE-SET,pikpak_ip,Pikpak,no-resolve # 配置文件中含有 no-resolve
+  - RULE-SET,pikpak_ip,Pikpak,no-resolve
   - RULE-SET,hentai_list,Hentai
   - RULE-SET,hentairegion_list,HentaiRegion
   - RULE-SET,scholar_list,Scholar
