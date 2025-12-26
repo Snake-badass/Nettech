@@ -368,6 +368,8 @@ rules:
   - GEOSITE,dmm,JP-manual
   - GEOSITE,ehentai,Hentai
   - GEOSITE,youjizz,Hentai
+  - GEOSITE,pixiv,JP-manual
+  - GEOSITE,dlsite,JP-manual
   - GEOSITE,xvideo,HentaiRegion
   - GEOSITE,spankbang,HentaiRegion
   - GEOSITE,xhamster,HentaiRegion
