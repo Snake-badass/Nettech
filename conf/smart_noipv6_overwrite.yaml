@@ -342,7 +342,7 @@ rules:
   # 自定义维护规则
   - RULE-SET,dns_list,GlobalDirect
   - RULE-SET,direct_list,GlobalDirect
-  - RULE-SET,direct_ip,GlobalDirect # 配置文件中含有 no-resolve
+  - RULE-SET,direct_ip,GlobalDirect,no-resolve # 配置文件中含有 no-resolve
   - RULE-SET,hk_list,HK-manual
   - RULE-SET,tw_list,TW-manual
   - RULE-SET,sg_list,SG-manual
@@ -350,7 +350,7 @@ rules:
   - RULE-SET,kr_list,KR-manual
   - RULE-SET,us_list,US-manual
   - RULE-SET,pikpak_list,Pikpak
-  - RULE-SET,pikpak_ip,Pikpak # 配置文件中含有 no-resolve
+  - RULE-SET,pikpak_ip,Pikpak,no-resolve # 配置文件中含有 no-resolve
   - RULE-SET,hentai_list,Hentai
   - RULE-SET,hentairegion_list,HentaiRegion
   - RULE-SET,scholar_list,Scholar
