@@ -116,12 +116,11 @@ dns:
     - 119.29.29.29
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - geosite:cn
-    - "rule-set:private_domain,cn_domain,fakeipfilter_domain,direct_list"
+    - "rule-set:fakeipfilter_domain,direct_list"
 
 # 策略组
 # 策略组定义锚
@@ -370,7 +369,7 @@ rules:
   - GEOSITE,youjizz,Hentai
   - GEOSITE,pixiv,JP-manual
   - GEOSITE,dlsite,JP-manual
-  - GEOSITE,xvideo,HentaiRegion
+  - GEOSITE,xvideos,HentaiRegion
   - GEOSITE,spankbang,HentaiRegion
   - GEOSITE,xhamster,HentaiRegion
   - GEOSITE,x,SocialMedia
@@ -394,7 +393,6 @@ rules:
   - GEOSITE,cn,GlobalDirect
   - GEOIP,cn,GlobalDirect,no-resolve
   - RULE-SET,block_domain,Block
-  - GEOSITE,category-ads-all,Block
   # 最终兜底
   - MATCH,Match
 
