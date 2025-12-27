@@ -3,6 +3,7 @@ DOMAIN-SUFFIX,javlibrary.com
 # --- javmost 广义匹配 ---
 DOMAIN-KEYWORD,javmost
 # --- supjav 资源站点 ---
+DOMAIN-SUFFIX,supjav.com
 DOMAIN-SUFFIX,supremejav.com
 # --- missav 资源站点 ---
 DOMAIN-SUFFIX,missav123.com
@@ -21,6 +22,7 @@ DOMAIN-KEYWORD,xsnvshen
 # --- wnacg 资源站点 ---
 DOMAIN-SUFFIX,wnacg.com
 DOMAIN-SUFFIX,img.achost.top
+DOMAIN-SUFFIX,qy0.ru
 # --- Galgame 网站 ---
 DOMAIN-SUFFIX,ggbases.com
 DOMAIN-SUFFIX,kungal.com
@@ -34,6 +36,3 @@ DOMAIN-SUFFIX,asmr.one
 DOMAIN-SUFFIX,asmr-200.com
 # --- 小说 ---
 DOMAIN-SUFFIX,hlib.cc
-# --- 其他 ---
-DOMAIN-SUFFIX,qy0.ru
-DOMAIN-SUFFIX,omnivore.app
