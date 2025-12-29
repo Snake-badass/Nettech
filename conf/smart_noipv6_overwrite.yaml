@@ -19,8 +19,7 @@ proxy-providers:
     type: http
     proxy: Mainland
     filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
-
-   Cheap:
+  Cheap:
     url: "url"
     type: http
     proxy: Mainland
