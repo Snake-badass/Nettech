@@ -19,6 +19,12 @@ proxy-providers:
     type: http
     proxy: Mainland
     filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
+
+   Cheap:
+    url: "url"
+    type: http
+    proxy: Mainland
+    filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"   
     
 # 基本代理
 # 用于订阅和拒绝连接
@@ -130,6 +136,7 @@ group1: &group1
     - WD-manual
     - WM-manual
     - XZY-manual
+    - Cheap-manual
     - HK-manual
     - TW-manual
     - JP-manual
@@ -146,6 +153,7 @@ group2: &group2
     - WD-manual
     - WM-manual
     - XZY-manual
+    - Cheap-manual
     - HK-smart
     - TW-smart
     - SG-smart
@@ -208,6 +216,14 @@ proxy-groups:
     type: select
     use:
       - XZY
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
+
+  - name: Cheap-manual
+    type: select
+    use:
+      - Cheap
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
