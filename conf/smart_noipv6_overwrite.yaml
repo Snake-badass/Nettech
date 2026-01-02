@@ -127,9 +127,9 @@ group1: &group1
   proxies:
     - Mainland
     - NB-manual
+    - XZY-manual
     - WD-manual
     - WM-manual
-    - XZY-manual
     - HK-manual
     - TW-manual
     - JP-manual
@@ -143,9 +143,15 @@ group2: &group2
   proxies:
     - Mainland
     - NB-manual
+    - XZY-manual
     - WD-manual
     - WM-manual
-    - XZY-manual
+    - HK-manual
+    - TW-manual
+    - JP-manual
+    - KR-manual
+    - SG-manual
+    - US-manual
     - HK-smart
     - TW-smart
     - SG-smart
@@ -153,12 +159,6 @@ group2: &group2
     - KR-smart
     - US-smart
     - EU-smart
-    - HK-manual
-    - TW-manual
-    - JP-manual
-    - KR-manual
-    - SG-manual
-    - US-manual
     - Reject
 
 # 应用策略层 - Select手动选择，支持多场景应用优化
