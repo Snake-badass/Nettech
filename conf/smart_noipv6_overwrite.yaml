@@ -386,6 +386,7 @@ rules:
   - GEOSITE,cn,GlobalDirect
   - GEOIP,cn,GlobalDirect,no-resolve
   - RULE-SET,block_domain,Block
+  - GEOSITE,category-ads-all,Block
   # 最终兜底
   - MATCH,Match
 
