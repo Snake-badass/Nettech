@@ -188,6 +188,14 @@ proxy-groups:
     interval: 300
     filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期)).)*$"
 
+  - name: XZY-manual
+    type: select
+    use:
+      - XZY
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
+    
   - name: WD-manual
     type: select
     use:
@@ -203,14 +211,6 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 1800
     filter: "^((?!(官网|客户端)).)*$"
-
-  - name: XZY-manual
-    type: select
-    use:
-      - XZY
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
 
 # 地理策略层-手动
   - name: HK-manual
