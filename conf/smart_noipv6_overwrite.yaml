@@ -166,6 +166,7 @@ proxy-groups:
   - { name: Proxy, <<: *group1 }
   - { name: GlobalDirect, <<: *group1 }
   - { name: Hentai, <<: *group2 }
+  - { name: HentaiRestrict, <<: *group1 }
   - { name: HentaiRegion, <<: *group2 }
   - { name: StreamMedia, <<: *group2 }
   - { name: SocialMedia, <<: *group2 }
@@ -348,6 +349,7 @@ rules:
   - RULE-SET,pikpak_list,Pikpak
   - RULE-SET,pikpak_ip,Pikpak,no-resolve
   - RULE-SET,hentai_list,Hentai
+  - RULE-SET,hentairestrict_list,HentaiRestrict
   - RULE-SET,hentairegion_list,HentaiRegion
   - RULE-SET,scholar_list,Scholar
   - RULE-SET,service_list,Github
@@ -357,7 +359,8 @@ rules:
   # 数据库规则 具体常用需提前匹配
   - GEOSITE,pikpak,Pikpak
   - GEOSITE,dmm,JP-manual
-  - GEOSITE,ehentai,Hentai
+  - GEOSITE,ehentai,HentaiRestrict
+  - GEOSITE,javdb,HentaiRestrict
   - GEOSITE,youjizz,Hentai
   - GEOSITE,pixiv,JP-manual
   - GEOSITE,dlsite,JP-manual
@@ -426,6 +429,11 @@ rule-providers:
     {
       <<: *class,
       url: "https://raw.githubusercontent.com/Snake-badass/Nettech/refs/heads/main/rules/hentai.list",
+    }  
+  hentairestrict_list:
+    {
+      <<: *class,
+      url: "https://raw.githubusercontent.com/Snake-badass/Nettech/refs/heads/main/rules/hentai_restrict.list",
     }
   hentairegion_list:
     {
