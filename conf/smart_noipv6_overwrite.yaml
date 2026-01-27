@@ -362,7 +362,7 @@ rules:
   - GEOSITE,ehentai,HentaiRestrict
   - GEOSITE,javdb,HentaiRestrict
   - GEOSITE,youjizz,Hentai
-  - GEOSITE,pixiv,JP-manual
+  - GEOSITE,pixiv,Proxy
   - GEOSITE,dlsite,JP-manual
   - GEOSITE,xvideos,HentaiRegion
   - GEOSITE,spankbang,HentaiRegion
