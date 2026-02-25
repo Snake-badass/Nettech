@@ -2,6 +2,7 @@
 # --- rule34video 资源站点---
 DOMAIN-SUFFIX,boomio-cdn.com
 DOMAIN-SUFFIX,rule34video.com
+DOMAIN-SUFFIX,rule34video-io.zproxy.org
 # --- Simplecity 资源站点 ---
 DOMAIN-KEYWORD,simpcity
 DOMAIN-KEYWORD,simptown
