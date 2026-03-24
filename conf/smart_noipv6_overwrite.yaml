@@ -110,8 +110,6 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver:
-    - 202.103.24.68
-    - 119.29.29.29
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   fake-ip-range: 198.18.0.1/16
