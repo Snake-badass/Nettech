@@ -136,38 +136,15 @@ group1: &group1
     - US-manual
     - Reject
 
-group2: &group2
-  type: select
-  proxies:
-    - Mainland
-    - NB-manual
-    - XZY-manual
-    - WD-manual
-    - WM-manual
-    - HK-manual
-    - TW-manual
-    - JP-manual
-    - KR-manual
-    - SG-manual
-    - US-manual
-    - HK-smart
-    - TW-smart
-    - SG-smart
-    - JP-smart
-    - KR-smart
-    - US-smart
-    - EU-smart
-    - Reject
-
 # 应用策略层 - Select手动选择，支持多场景应用优化
 proxy-groups:
   - { name: Proxy, <<: *group1 }
   - { name: GlobalDirect, <<: *group1 }
-  - { name: Hentai, <<: *group2 }
+  - { name: Hentai, <<: *group1 }
   - { name: HentaiRestrict, <<: *group1 }
-  - { name: HentaiRegion, <<: *group2 }
-  - { name: StreamMedia, <<: *group2 }
-  - { name: SocialMedia, <<: *group2 }
+  - { name: HentaiRegion, <<: *group1 }
+  - { name: StreamMedia, <<: *group1 }
+  - { name: SocialMedia, <<: *group1 }
   - { name: Scholar, <<: *group1 }
   - { name: AI, <<: *group1 }
   - { name: Google, <<: *group1 }
@@ -176,7 +153,7 @@ proxy-groups:
   - { name: Pikpak, <<: *group1 }
   - { name: Apple, <<: *group1 }
   - { name: Block, <<: *group1 }
-  - { name: Match, <<: *group2 }
+  - { name: Match, <<: *group1 }
 
   # 机场组-手动
   - name: NB-manual
@@ -241,90 +218,6 @@ proxy-groups:
     type: select
     include-all: true
     filter: "((?i)美|美国|波特兰|纽约|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|United States)"
-
-# 地理策略层-智能 
-# 政策权重数值越大优先级越低，不知道为什么别的配置都说反了
-  - name: HK-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)香港"
-    uselightgbm: true
-    collectdata: false
-    policy-priority: "(?i)0.5x:1.5"
-    interval: 300
-    prefer-asn: true
-
-  - name: TW-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)台湾"
-    uselightgbm: true
-    collectdata: false
-    policy-priority: "(?i)0.5x:1.5"
-    interval: 300
-    prefer-asn: true
-
-  - name: SG-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)新加坡"
-    uselightgbm: true
-    collectdata: false
-    interval: 300
-    prefer-asn: true
-
-  - name: JP-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)日本"
-    uselightgbm: true
-    collectdata: false
-    interval: 300
-    prefer-asn: true
-    
-  - name: KR-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)韩国"
-    uselightgbm: true
-    collectdata: false
-    policy-priority: "(?i)0.5x:1.5"
-    interval: 300
-    prefer-asn: true
-    
-  - name: US-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)美国|拉斯维加斯|凤凰城|纽约"
-    uselightgbm: true
-    collectdata: false
-    policy-priority: "(?i)0.5x:1.5"
-    interval: 300
-    prefer-asn: true
-
-  - name: EU-smart
-    type: smart
-    use:
-      - NB
-      - XZY
-    filter: "(?i)德国|英国|加拿大"
-    uselightgbm: true
-    collectdata: false
-    policy-priority: "(?i)0.5x:1.5"
-    interval: 300
-    prefer-asn: true
 
 # 规则匹配
 # 把小的，需要优先匹配的规则放在前面，大的兜底的规则放在后面
