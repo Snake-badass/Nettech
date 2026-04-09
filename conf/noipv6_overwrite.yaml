@@ -19,6 +19,11 @@ proxy-providers:
     type: http
     proxy: Mainland
     filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
+  mitee:
+    url: "url"
+    type: http
+    proxy: Mainland
+    filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
     
 # 基本代理
 # 用于订阅和拒绝连接
@@ -41,7 +46,7 @@ bind-address: "*"
 find-process-mode: "off" #性能开销大 mt3000不适合开
 keep-alive-interval: 15
 keep-alive-idle: 600
-global-client-fingerprint: chrome
+client-fingerprint: chrome
 
 # 配置存储
 profile:
@@ -126,6 +131,7 @@ group1: &group1
     - Mainland
     - NB-manual
     - XZY-manual
+    - mitee-manual
     - WD-manual
     - WM-manual
     - HK-manual
@@ -168,6 +174,14 @@ proxy-groups:
     type: select
     use:
       - XZY
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
+    
+  - name: mitee-manual
+    type: select
+    use:
+      - mitee
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
