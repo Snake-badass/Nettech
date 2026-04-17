@@ -109,7 +109,22 @@ dns:
   listen: 0.0.0.0:7874
   ipv6: false
   respect-rules: true
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - GEOSITE,private,real-ip
+    - GEOSITE,cn,real-ip
+    - RULE-SET,fakeipfilter_domain,real-ip
+    - RULE-SET,direct_list,real-ip
+    - DOMAIN-SUFFIX,localhost,real-ip
+    - DOMAIN-SUFFIX,local,real-ip
+    - DOMAIN-SUFFIX,lan,real-ip
+    - DOMAIN-SUFFIX,msftconnecttest.com,real-ip
+    - DOMAIN-SUFFIX,msftncsi.com,real-ip
+    - MATCH,fake-ip
   default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
     - https://223.5.5.5/dns-query
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
@@ -117,11 +132,6 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - geosite:cn
-    - "rule-set:fakeipfilter_domain,direct_list"
 
 # 策略组
 # 策略组定义锚
