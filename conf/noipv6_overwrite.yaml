@@ -113,7 +113,6 @@ dns:
   fake-ip-filter-mode: rule
   fake-ip-filter:
     - GEOSITE,private,real-ip
-    - GEOSITE,cn,real-ip
     - RULE-SET,fakeipfilter_domain,real-ip
     - RULE-SET,direct_list,real-ip
     - DOMAIN-SUFFIX,localhost,real-ip
