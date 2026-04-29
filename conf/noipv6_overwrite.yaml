@@ -1,25 +1,25 @@
 # 机场订阅
 proxy-providers:
-  WD:
+  speed:
     url: "url"
     type: http
     proxy: Mainland
-  NB:
+  volumn:
     url: "url"
     type: http
     proxy: Mainland
     filter: "^((?!(更新|客户端|显示|教程)).)*$"
-  WM:
+  stream:
     url: "url"
     type: http
     proxy: Mainland
     filter: "^((?!(测试|客户端|官网|教程)).)*$"
-  XZY:
+  backup:
     url: "url"
     type: http
     proxy: Mainland
     filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
-  mitee:
+  test:
     url: "url"
     type: http
     proxy: Mainland
@@ -138,11 +138,11 @@ group1: &group1
   type: select
   proxies:
     - Mainland
-    - NB-manual
-    - XZY-manual
-    - mitee-manual
-    - WD-manual
-    - WM-manual
+    - speed-manual
+    - stream-manual
+    - volumn-auto
+    - test-manual
+    - backup-manual
     - HK-manual
     - TW-manual
     - JP-manual
@@ -171,46 +171,47 @@ proxy-groups:
   - { name: Match, <<: *group1 }
 
   # 机场组-手动
-  - name: NB-manual
+  - name: speed-manual
     type: select
     use:
-      - NB
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期)).)*$"
-
-  - name: XZY-manual
-    type: select
-    use:
-      - XZY
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
-    
-  - name: mitee-manual
-    type: select
-    use:
-      - mitee
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
-    
-  - name: WD-manual
-    type: select
-    use:
-      - WD
+      - speed
     url: "https://www.gstatic.com/generate_204"
     interval: 3600
     filter: "^((?!(Traffic|Expire)).)*$"
     
-  - name: WM-manual
+  - name: stream-manual
     type: select
     use:
-      - WM
+      - stream
     url: "https://www.gstatic.com/generate_204"
     interval: 1800
     filter: "^((?!(官网|客户端)).)*$"
+    
+  - name: volumn-auto
+    type: url-test
+    use:
+      - volumn
+    url: "https://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 60
+    filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期)).)*$"
 
+  - name: test-manual
+    type: select
+    use:
+      - test
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
+    
+  - name: backup-manual
+    type: select
+    use:
+      - backup
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
+    
 # 地理策略层-手动
   - name: HK-manual
     type: select
