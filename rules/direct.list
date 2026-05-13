@@ -11,12 +11,11 @@ DOMAIN-KEYWORD,qiandurebo
 DOMAIN-SUFFIX,gudong.fun
 DOMAIN-SUFFIX,qc.qaz.ink
 DOMAIN-SUFFIX,wucai.site
-DOMAIN-SUFFIX,wechat.vapyun.com
+DOMAIN-SUFFIX,vapyun.com
 # --- 未匹配的国内学术网站 ---
 DOMAIN-SUFFIX,home-for-researchers.com
 DOMAIN-KEYWORD,scholarscope
 DOMAIN-SUFFIX,scidownload.com
-
 # 银行登录修复：风控安全 SDK
 DOMAIN-SUFFIX,tongdun.net
 DOMAIN-SUFFIX,tongduncdn.com
