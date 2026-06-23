@@ -1,3 +1,5 @@
+# ---- api中转服务 ----
+DOMAIN-SUFFIX,api.vveai.com
 # ---- 临时未被墙镜像站 ----
 DOMAIN-KEYWORD,e.810114.xyz
 # --- realme 手机 ---
