@@ -2,4 +2,7 @@ DOMAIN-SUFFIX,dns.alidns.com
 DOMAIN-SUFFIX,doh.pub
 DOMAIN-SUFFIX,dot.360.cn
 DOMAIN-SUFFIX,dns.tuna.tsinghua.edu.cn
-
+DOMAIN-SUFFIX,dns.alidns.com/dnsquery
+DOMAIN-SUFFIX,doh.pub/dnsquery
+DOMAIN-SUFFIX,dot.360.cn/dnsquery
+DOMAIN-SUFFIX,dns.tuna.tsinghua.edu.cn/dnsquery
