@@ -4,21 +4,6 @@ proxy-providers:
     url: "url"
     type: http
     proxy: Mainland
-  volumn:
-    url: "url"
-    type: http
-    proxy: Mainland
-    filter: "^((?!(更新|客户端|显示|教程)).)*$"
-  stream:
-    url: "url"
-    type: http
-    proxy: Mainland
-    filter: "^((?!(测试|客户端|官网|教程)).)*$"
-  backup:
-    url: "url"
-    type: http
-    proxy: Mainland
-    filter: "^((?!(测试|客户端|官网|教程|更新|TG群|重置|ISP)).)*$"
   test:
     url: "url"
     type: http
@@ -55,11 +40,11 @@ profile:
   
 # geo 链接
 # 采用 https://github.com/MetaCubeX/meta-rules-dat/tree/master 项目中的文件
-geox-url:
-  mmdb: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
-  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
-  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
-  asn: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb
+#geox-url:
+#  mmdb: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+#  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+#  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+#  asn: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb
 
 # 实验性功能
 experimental:
@@ -93,6 +78,12 @@ sniffer:
     - "+.amazonaws.com"
     - "+.v2ex.com"
     - "+.media.dssott.com"
+    - "+.googlevideo.com"
+    - "+.youtube.com"
+    - "+.disneyplus.com"
+    - "+.wd-gold.net"
+    - "+.rule34video.com"
+    - "+.aistudio.google.com"
   skip-domain:
     - "+.apple.com"
     - Mijia Cloud
@@ -100,6 +91,11 @@ sniffer:
     - "+.oray.com"
     - "+.sunlogin.net"
     - "+.push.apple.com"
+    - "+.weixin.qq.com"
+    - "+.qq.com"
+    - "+.qpic.cn"
+    - "+.tencent.com"
+    - "+.gtimg.com"
   parse-pure-ip: true
 
 # DNS 设置
@@ -121,16 +117,23 @@ dns:
     - DOMAIN-SUFFIX,msftconnecttest.com,real-ip
     - DOMAIN-SUFFIX,msftncsi.com,real-ip
     - MATCH,fake-ip
-  default-nameserver:
-    - 119.29.29.29
+  default-nameserver: # 基本dns, 解析加密DNS服务商
     - 223.5.5.5
-    - https://223.5.5.5/dns-query
-  proxy-server-nameserver:
+    - 119.29.29.29
+    - 180.76.76.76
+    - 180.184.1.1
+    - 114.114.114.114
+  proxy-server-nameserver: # 解析代理服务器域名, 防止劫持
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - https://doh.360.cn/dns-query
+  nameserver: # 解析灰色地带域名
+     - https://dns.alidns.com/dns-query
+     - https://doh.pub/dns-query
+     - https://doh.360.cn/dns-query
+  nameserver-policy: # 解析国内域名
+    "geosite:cn":
+     - 127.0.0.1:6053 # smartdns 服务
 
 # 策略组
 # 策略组定义锚
@@ -139,10 +142,7 @@ group1: &group1
   proxies:
     - Mainland
     - speed-manual
-    - stream-manual
-    - volumn-auto
     - test-manual
-    - backup-manual
     - HK-manual
     - TW-manual
     - JP-manual
@@ -176,40 +176,13 @@ proxy-groups:
     use:
       - speed
     url: "https://www.gstatic.com/generate_204"
-    interval: 3600
-    filter: "^((?!(Traffic|Expire)).)*$"
-    
-  - name: stream-manual
-    type: select
-    use:
-      - stream
-    url: "https://www.gstatic.com/generate_204"
-    interval: 1800
-    filter: "^((?!(官网|客户端)).)*$"
-    
-  - name: volumn-auto
-    type: url-test
-    use:
-      - volumn
-    url: "https://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 60
-    filter: "^((?!(流量|官网|超时|xianzheyun|ISP|重置|到期)).)*$"
+    filter: "^((?!(Traffic|Expire|官网|客户端|流量|重置|到期)).)*$"
 
   - name: test-manual
     type: select
     use:
       - test
     url: "https://www.gstatic.com/generate_204"
-    interval: 600
-    filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
-    
-  - name: backup-manual
-    type: select
-    use:
-      - backup
-    url: "https://www.gstatic.com/generate_204"
-    interval: 600
     filter: "^((?!(官网|客户端|流量|重置|到期)).)*$"
     
 # 地理策略层-手动
@@ -251,6 +224,10 @@ proxy-groups:
 rules:
   # 拦截规则
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT  # 阻止 QUIC
+  - RULE-SET,block_domain,Block
+  # 内网规则
+  - GEOIP,private,GlobalDirect,no-resolve
+  - GEOSITE,private,GlobalDirect
   # 自定义维护规则
   - RULE-SET,dns_list,GlobalDirect
   - RULE-SET,direct_list,GlobalDirect
@@ -300,10 +277,8 @@ rules:
   - GEOSITE,category-porn,Hentai
   - GEOSITE,gfw,Proxy
   - GEOSITE,geolocation-!cn,Proxy
-  - GEOSITE,private,GlobalDirect
   - GEOSITE,cn,GlobalDirect
   - GEOIP,cn,GlobalDirect,no-resolve
-  - RULE-SET,block_domain,Block
   # 最终兜底
   - MATCH,Match
 
