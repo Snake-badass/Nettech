@@ -1,4 +1,5 @@
 DOMAIN-SUFFIX,dns.alidns.com
 DOMAIN-SUFFIX,doh.pub
 DOMAIN-SUFFIX,dns.tuna.tsinghua.edu.cn
-DOMAIN-SUFFIX,dns.bytedance.com
+DOMAIN-SUFFIX,doh.360.cn
+
