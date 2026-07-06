@@ -1,3 +1,6 @@
+# ---- 软件服务 ----
+# matlab 登录认证
+DOMAIN-SUFFIX,mathworks.com
 # ---- 镜像站 ----
 DOMAIN-SUFFIX,e.810114.xyz
 DOMAIN-SUFFIX,x.810114.xyz
