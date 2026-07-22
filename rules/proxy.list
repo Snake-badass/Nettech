@@ -21,3 +21,5 @@ DOMAIN-KEYWORD,open-vsx
 DOMAIN-SUFFIX,posit.co
 DOMAIN-KEYWORD,conda
 DOMAIN-SUFFIX,searchgal.homes
+# ---- 可能是ehentai的子域名 ----
+DOMAIN-SUFFIX,ehtt.fly.dev
