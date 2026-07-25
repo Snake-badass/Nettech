@@ -3,6 +3,8 @@
 DOMAIN-SUFFIX,mathworks.com
 # bilibili静态资源网站
 DOMAIN-SUFFIX,hdslb.com
+# gh-proxy cdn
+DOMAIN-SUFFIX,gh-proxy.com
 # ---- 镜像站 ----
 DOMAIN-SUFFIX,e.810114.xyz
 DOMAIN-SUFFIX,x.810114.xyz
