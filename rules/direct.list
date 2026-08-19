@@ -8,13 +8,8 @@ DOMAIN-SUFFIX,mathworks.com
 DOMAIN-SUFFIX,hdslb.com
 # gh-proxy cdn
 DOMAIN-SUFFIX,gh-proxy.com
-# ---- 镜像站 ----
-DOMAIN-SUFFIX,e.810114.xyz
-DOMAIN-SUFFIX,x.810114.xyz
 # ---- api中转服务 ----
 DOMAIN-SUFFIX,api.vveai.com
-# ---- 临时未被墙镜像站 ----
-DOMAIN-KEYWORD,e.810114.xyz
 # --- realme 手机 ---
 DOMAIN-SUFFIX,heytapmobile.com
 DOMAIN-SUFFIX,realme.net
